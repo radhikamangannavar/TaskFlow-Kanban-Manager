@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TaskFlow | Dashboard</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Sortable JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📋</text></svg>">
+</head>
+
+<body class="bg-gradient-to-br from-gray-100 to-gray-200 min-h-screen">
+
+    <!-- NAVBAR -->
+    <nav class="bg-white shadow-sm px-6 py-3 flex justify-between items-center">
+
+    <!-- LOGO -->
+    <h1 class="text-3xl font-bold text-blue-600">
+        TaskFlow
+    </h1>
+
+    <!-- RIGHT SECTION -->
+    <div class="flex items-center gap-3">
+
+        <!-- USER BADGE -->
+        <div class="bg-gray-100 px-4 py-2 rounded-full text-sm font-weight text-gray-700">
+
+            <span id="welcomeText"></span>
+
+        </div>
+
+        <!-- ADD TASK -->
+        <button id="openModal"
+            class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition">
+
+            + Add Task
+
+        </button>
+
+        <!-- LOGOUT -->
+        <button id="logoutBtn"
+            class="bg-red-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-600 transition">
+
+            Logout
+
+        </button>
+
+    </div>
+
+</nav>
+
+    <!-- FILTER BAR -->
+<div class="max-w-7xl mx-auto px-6 pt-6">
+
+    <div class="bg-white rounded-xl shadow-md p-4 flex flex-col md:flex-row gap-4">
+
+        <!-- SEARCH -->
+        <input
+            id="searchInput"
+            type="text"
+            placeholder="Search tasks..."
+            class="flex-1 border p-3 rounded-lg outline-none focus:ring-2 focus:ring-blue-400">
+
+        <!-- PRIORITY FILTER -->
+        <select
+            id="priorityFilter"
+            class="border p-3 rounded-lg outline-none focus:ring-2 focus:ring-blue-400">
+
+            <option value="ALL">All Priorities</option>
+
+            <option value="Low Priority">
+                Low Priority
+            </option>
+
+            <option value="Medium Priority">
+                Medium Priority
+            </option>
+
+            <option value="High Priority">
+                High Priority
+            </option>
+
+        </select>
+
+    </div>
+
+</div>
+    <!-- BOARD -->
+    <div class="max-w-7xl mx-auto p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- TODO COLUMN -->
+        <div class="bg-white/50 backdrop-blur-sm rounded-2xl p-5 min-h-[500px] shadow-md border border-white/40">
+
+            <!-- HEADER -->
+            <div class="flex justify-between items-center mb-4">
+
+                <h2 class="text-lg font-bold text-gray-700">
+                    To Do
+                </h2>
+
+                <span id="todoCount"
+                    class="bg-gray-400 text-white px-2 py-1 rounded-full text-sm">
+
+                    2
+
+                </span>
+
+            </div>
+
+            <!-- TASKS -->
+            <div id="todoTasks" data-status="TODO">
+                <p class="empty-message text-gray-500 text-center py-3">
+    No tasks yet
+</p>
+            </div>
+
+        </div>
+
+        <!-- DOING COLUMN -->
+        <div class="bg-white/50 backdrop-blur-sm rounded-2xl p-5 min-h-[500px] shadow-md border border-white/40">
+
+            <!-- HEADER -->
+            <div class="flex justify-between items-center mb-4">
+
+                <h2 class="text-lg font-bold text-gray-700">
+                    Doing
+                </h2>
+
+                <span id="doingCount"
+                    class="bg-blue-500 text-white px-2 py-1 rounded-full text-sm">
+
+                    1
+
+                </span>
+
+            </div>
+
+            <!-- TASKS -->
+            <div id="doingTasks" data-status="DOING">
+<p class="empty-message text-gray-500 text-center py-3">
+    No tasks yet
+</p>
+            </div>
+
+        </div>
+
+        <!-- DONE COLUMN -->
+        <div class="bg-white/50 backdrop-blur-sm rounded-2xl p-5 min-h-[500px] shadow-md border border-white/40">
+
+            <!-- HEADER -->
+            <div class="flex justify-between items-center mb-4">
+
+                <h2 class="text-lg font-bold text-gray-700">
+                    Done
+                </h2>
+
+                <span id="doneCount"
+                    class="bg-green-500 text-white px-2 py-1 rounded-full text-sm">
+
+                    1
+
+                </span>
+
+            </div>
+
+            <!-- TASKS -->
+            <div id="doneTasks" data-status="DONE">
+<p class="empty-message text-gray-500 text-center py-3">
+    No tasks yet
+</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- TASK MODAL -->
+    <div id="taskModal"
+        class="fixed inset-0 bg-black bg-opacity-50 hidden justify-center items-center">
+
+        <div class="bg-white w-96 p-6 rounded-xl shadow-2xl">
+
+            <!-- HEADER -->
+            <div class="flex justify-between items-center mb-4">
+
+                <h2 class="text-xl font-bold">
+                    Create Task
+                </h2>
+
+                <button id="closeModal"
+                    class="text-gray-500 text-xl">
+
+                    ✖
+
+                </button>
+
+            </div>
+
+            <!-- TITLE -->
+            <input id="taskTitle"
+                type="text"
+                placeholder="Task Title"
+                class="w-full border p-3 rounded-lg mb-4 outline-none focus:ring-2 focus:ring-blue-400">
+
+            <!-- DESCRIPTION -->
+            <textarea
+    id="taskDescription"
+    rows="4"
+    placeholder="Task Description"
+    class="w-full border p-3 rounded-lg mb-4 outline-none focus:ring-2 focus:ring-blue-400 resize-none">
+</textarea>
+
+            <!-- PRIORITY -->
+            <select id="taskPriority"
+                class="w-full border p-3 rounded-lg mb-4 outline-none focus:ring-2 focus:ring-blue-400">
+
+                <option>Low Priority</option>
+                <option>Medium Priority</option>
+                <option>High Priority</option>
+
+            </select>
+
+            <!-- DEADLINE -->
+            <input id="taskDeadline"
+                type="date"
+                class="w-full border p-3 rounded-lg mb-4 outline-none focus:ring-2 focus:ring-blue-400">
+
+            <!-- BUTTONS -->
+            <div class="flex justify-end gap-3">
+
+                <button id="cancelModal"
+                    class="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400">
+
+                    Cancel
+
+                </button>
+
+                <button id="createTaskBtn"
+                    class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+
+                    Create
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- JS -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>

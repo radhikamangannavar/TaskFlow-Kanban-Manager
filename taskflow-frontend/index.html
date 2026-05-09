@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>TaskFlow | Login</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📋</text></svg>">
+</head>
+
+<body class="bg-gradient-to-br from-blue-100 to-gray-200 min-h-screen flex justify-center items-center">
+
+    <div class="bg-white p-8 rounded-2xl shadow-xl w-96">
+
+        <!-- TITLE -->
+        <h1 class="text-3xl font-bold text-center text-blue-600 mb-6">
+            TaskFlow
+        </h1>
+
+
+        <!-- NAME -->
+        <input
+            id="name"
+            type="text"
+            placeholder="Name"
+            class="w-full border p-3 rounded-lg mb-4 outline-none focus:ring-2 focus:ring-blue-400">
+
+
+        <!-- EMAIL -->
+        <input
+            id="email"
+            type="email"
+            placeholder="Email"
+            class="w-full border p-3 rounded-lg mb-4 outline-none focus:ring-2 focus:ring-blue-400">
+
+
+        <!-- PASSWORD -->
+        <input
+            id="password"
+            type="password"
+            placeholder="Password"
+            class="w-full border p-3 rounded-lg mb-4 outline-none focus:ring-2 focus:ring-blue-400">
+
+
+        <!-- BUTTONS -->
+        <div class="flex gap-4">
+
+            <button
+                id="registerBtn"
+                class="flex-1 bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700">
+
+                Register
+            </button>
+
+            <button
+                id="loginBtn"
+                class="flex-1 bg-green-600 text-white p-3 rounded-lg hover:bg-green-700">
+
+                Login
+            </button>
+
+        </div>
+
+    </div>
+
+    <script src="auth.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+body {
+    font-family: Arial, sans-serif;
+}
+.ghost-card {
+    opacity: 0.4;
+}
+
+.chosen-card {
+    transform: rotate(2deg);
+}
+
+.drag-card {
+    cursor: grabbing;
+}
