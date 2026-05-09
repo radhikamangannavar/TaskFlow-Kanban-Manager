@@ -48,8 +48,15 @@ To Do → Doing → Done
 
 ## Screenshots
 
-Screenshots will be added soon.
+### Login Page
+![Login](screenshots/login.png)
 
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### Filtering Tasks
+![Filter](screenshots/filter_by_name.png')
+![Filter](screenshots/filter_by_priority.png')
 ## Setup Instructions
 
 ### Backend
