@@ -55,8 +55,8 @@ To Do → Doing → Done
 ![Dashboard](screenshots/dashboard.png)
 
 ### Filtering Tasks
-![Filter](screenshots/filter_by_name.png')
-![Filter](screenshots/filter_by_priority.png')
+![Filter](screenshots/filter1.png')
+![Filter](screenshots/filter2.png')
 ## Setup Instructions
 
 ### Backend
